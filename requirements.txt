@@ -10,7 +10,7 @@ numpy
 # for reading images
 imageio
 
-# one of the best machine learning frameworks for neural networks avaliable
+# one of the best machine learning frameworks for neural networks available
 torch
 torchvision
 
