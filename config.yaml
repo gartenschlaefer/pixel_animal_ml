@@ -1,0 +1,158 @@
+# --
+# pixel art datamodule
+
+task0:
+  important_variable: 999
+  another_dict:
+    a: 1
+    b: 2
+  yet_another_dict:
+    c: 3
+
+task1:
+  dataset_path: './datasets/pixel_animals/data'
+  downsample_path: './datasets/pixel_animals/downsample/downsample_these_files_here/'
+  save_downsampled_path: './datasets/pixel_animals/downsample/'
+
+task2:
+  pixel_animal_datamodule:
+    dataset_path: './datasets/pixel_animals/data'
+  cifar10_animal_datamodule:
+    kwargs:
+      root_path: './datasets/cifar10'
+
+task3:
+  model:
+    animal_cnn_model:
+      model_file_name: 'animal_cnn_model'
+      save_path: './output/test_models/'
+      input_shape: [3, 32, 32]
+      num_classes: 3
+      device:
+        use_cpu: False
+        device_name: 'cuda:0'
+      optimizer:
+        module: 'torch.optim'
+        attr: 'Adam'
+        kwargs:
+          lr: 0.0001
+          betas: [0.9, 0.999]
+
+task4:
+  define: &result_path_var './output/test_pipeline/'
+  result_path: *result_path_var
+  training:
+    num_epochs: 2
+    num_augmentations: 0
+    use_extracting_hog: False
+    show_plots: False
+    dataloader_kwargs:
+      batch_size: 64
+  datamodule:
+    module: 'task2_datamodule'
+    attr: 'CIFAR10AnimalDatamodule'
+    args: []
+    kwargs:
+      root_path: './datasets/cifar10'
+  model:
+    module: 'task3_model'
+    attr: 'AnimalCNNModel'
+    args:
+      -
+        model_file_name: 'animal_cnn_model'
+        save_path: *result_path_var
+        input_shape: [3, 32, 32]
+        num_classes: 3
+        device:
+          use_cpu: False
+          device_name: 'cuda:0'
+        optimizer:
+          module: 'torch.optim'
+          attr: 'Adam'
+          kwargs:
+            lr: 0.0001
+            betas: [0.9, 0.999]
+    kwargs: {}
+
+task5:
+  experiments_path: './experiments/'
+  result_path: './output/experiment_results/'
+
+task6:
+  final_path: './output/final/'
+
+
+# --
+# basic configs of the different models
+
+random_model:
+  model_file_name: 'random_model.pth'
+  save_path: './'
+  num_classes: 3
+
+animal_cnn_model:
+  model_file_name: 'animal_cnn_model'
+  save_path: './'
+  input_shape: [3, 32, 32]
+  num_classes: 4
+  device:
+    use_cpu: False
+    device_name: 'cuda:0'
+  optimizer:
+    module: 'torch.optim'
+    attr: 'Adam'
+    kwargs:
+      lr: 0.0001
+      betas: [0.9, 0.999]
+  training_update:
+    num_patience: 3
+    num_refinements: 2
+    lr_scale_factor: 0.1
+  use_early_stopping_criteria: True
+
+random_forest_model:
+  model_file_name: 'random_forest_model'
+  save_path: './'
+  module: 'sklearn.ensemble'
+  attr: 'RandomForestClassifier'
+  kwargs:
+    n_estimators: 100
+    criterion: 'gini'
+    max_depth: null
+    min_samples_split: 2
+    min_samples_leaf: 1
+    min_weight_fraction_leaf: 0.0
+    max_features: 'sqrt'
+    max_leaf_nodes: null
+    min_impurity_decrease: 0.0
+    bootstrap: True
+    oob_score: False
+    n_jobs: null
+    random_state: null
+    verbose: 0
+    warm_start: False
+    class_weight: null
+    ccp_alpha: 0.0
+    max_samples: null
+    monotonic_cst: null
+
+svm_model:
+  model_file_name: 'svm_model'
+  save_path: './'
+  module: 'sklearn.svm'
+  attr: 'SVC'
+  kwargs:
+    C: 1.0
+    #kernel: 'rbf'
+    kernel: 'linear'
+    degree: 3
+    gamma: 0.0
+    coef0: 0.0
+    shrinking: True
+    probability: False
+    tol: 0.001
+    cache_size: 200
+    class_weight: Null
+    verbose: False
+    max_iter: -1
+    random_state: Null

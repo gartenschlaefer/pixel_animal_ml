@@ -1,0 +1,39 @@
+# --
+# random model experiment
+
+
+# --
+# training
+
+training:
+  num_epochs: 1
+  num_augmentations: 0
+  use_extracting_hog: False
+  show_plots: False
+  dataloader_kwargs:
+    batch_size: 64
+
+
+# --
+# datamodule
+
+datamodule:
+  module: 'task2_datamodule'
+  attr: 'CIFAR10AnimalDatamodule'
+  args: []
+  kwargs:
+    root_path: './datasets/cifar10'
+
+
+# --
+# model
+
+model:
+  module: 'model_collection'
+  attr: 'RandomModel'
+  args:
+    -
+      model_file_name: 'random_model'
+      save_path: './'
+      num_classes: 3
+  kwargs: {}

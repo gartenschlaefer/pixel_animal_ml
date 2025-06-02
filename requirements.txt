@@ -1,0 +1,27 @@
+# --
+# requirements.txt
+
+# yaml for python
+pyyaml
+
+# best math library ever
+numpy
+
+# for reading images
+imageio
+
+# one of the best machine learning frameworks for neural networks avaliable
+torch
+torchvision
+
+# machine learning tookit
+scikit-learn
+
+# image processing tools
+scikit-image
+opencv-python
+
+# plotting libraries
+matplotlib
+palettable
+PyQt6
