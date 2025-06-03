@@ -1,8 +1,8 @@
 # --
-# task 1: data generation
+# task 1: data creation
 
 # In task 1 you should create images as described in the assignment sheet.
-# This code provides you with some helper functions in case you want to downsample the data.
+# This code provides you with a function to downsample the data.
 # Fill the sections with # *** your code her *** #
 
 import numpy as np
@@ -12,7 +12,7 @@ from pathlib import Path
 def load_image_from_file(file):
   """
   load an image from a file, make it a numpy array, remove the alpha channel if there exists one
-  and make the color channel dimension on first position: [color channel x height x width]
+  and make the color channel dimension on first position of the array, e.g.: [color channel x height x width]
   useful function: imageio.v3.imread, numpy.transpose
   """
 
@@ -53,9 +53,9 @@ def get_files_from_path(path, file_ext='.png'):
 
 def downsample_files(file_path, save_path, file_ext='.png'):
   """
-  downsample files and create upsampled version to view the file,
-  after downsampling place the files in the dataset folder under the correct class name
-  use this to generate new data from existing files
+  use this to create downsampled versions of existing images
+  the function will downsample the files in file_path and create an upsampled version of it (to view the file),
+  after downsampling place the files (in save_path) in the dataset folder under the correct class name
   note that the files must have equal size e.g. 400x400 pixels
   """
 
@@ -117,7 +117,7 @@ def downsample_files(file_path, save_path, file_ext='.png'):
 
 if __name__ == '__main__':
   """
-  task 1: data generation
+  task 1: data creation
   """
 
   import yaml

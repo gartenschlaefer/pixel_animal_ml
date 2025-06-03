@@ -5,9 +5,9 @@
 # For each experiments we have to print the scores and the training results so that we can review and compare them afterwards.
 # In this task you do not have to code but to write config files with the requested structure of the pipeline.
 # Create following experiments:
-# - cnn model from task3 without augmentation
-# - cnn model from task3 with augmentation
-# - cnn model from task3 with hog features
+# - cnn model from task 3 without augmentation
+# - cnn model from task 3 with augmentation
+# - cnn model from task 3 with hog features
 # - svm model
 # - random forest model
 # Note: use the example experiment file in '/experiments/exp_random_model.yaml'

@@ -2,7 +2,7 @@
 # task 4: pipeline
 
 # In this task you will create a machine learning pipeline to train and evaluate different models.
-# This pipeline is controlled via a config dictionary, were the datamodule, model, and other parameters are stored.
+# The pipeline is controlled via a config dictionary, were the datamodule, model, and other parameters are stored.
 # Fill the sections with # *** your code her *** #
 
 import yaml

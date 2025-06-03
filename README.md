@@ -5,7 +5,7 @@
 </div>
 
 ## About
-This is the project repository for the joint assignment of the courses "Image-Processing Systems; Capture and Analysis" (702303_25S) and "Modelling, System/Process Analysis, Forecasting Models and Decision Support" (702403_25S) at the University of Veterinary Medicine, Vienna.
+This is the project repository of the joint assignment of the courses "Image-Processing Systems; Capture and Analysis" (702303_25S) and "Modelling, System/Process Analysis, Forecasting Models and Decision Support" (702403_25S) at the University of Veterinary Medicine, Vienna.
 The task is to fill the blank code snippets of each task file.
 
 ## Setup and Installation
@@ -14,21 +14,20 @@ The task is to fill the blank code snippets of each task file.
 git clone git@github.com:gartenschlaefer/pixel_animal_ml.git
 ```
 
-2. Create a virtual environment for python and activate it:
+2. Create a virtual python environment and activate it:
 ```bash
 python -m venv "path/to/your/environment"
 source "path/to/your/environment/bin/activate"
 ```
 
-3. Go to the project folder and install requirements:
+3. Go to the project folder and install the requirements:
 ```bash
 cd pixel_animal_ml
 pip install -r requirements.txt
 ```
 
 ## Usage
-Read the assignment sheet `assignment.pdf`.
-Only modify and run each task file as requested, e.g.:
+Read the assignment sheet `assignment.pdf` beforehand and modify and run the task files (python files starting with "task"), e.g.:
 ```bash
 python task0_start_here.py
 ```

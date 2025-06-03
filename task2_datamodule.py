@@ -68,12 +68,12 @@ class CIFAR10AnimalDatamodule(torch.utils.data.Dataset):
 
 class PixelAnimalDatamodule(torch.utils.data.Dataset):
   """
-  pixel animal datamodule, use this to store your created data
+  pixel animal datamodule, use this to store your created data from task 1
   """
 
   def __init__(self, cfg):
 
-    # your implemented functions from task1
+    # your implemented functions from task 1
     from task1_data_creation import get_files_from_path, load_image_from_file
 
     # super constructor
@@ -127,8 +127,9 @@ class PixelAnimalDatamodule(torch.utils.data.Dataset):
 
     # # go through each file
     # for i, file in enumerate(files):
-    #   pass
-    #   ...
+    #   self.features...
+    #   self.targets...
+    #   self.sample_ids...
 
     #
     # ***

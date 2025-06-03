@@ -52,6 +52,9 @@ import numpy as np
 # numpy array
 a = np.array([[1, 2], [3, 4]])
 
+# print is a powerful function to display variables and references in the terminal, use it as much as possible
+print("a", 1, 2, 3, 4, "{} end".format('the'))
+
 # print that variable and note that a numpy array has a function to get its shape (very useful)
 print("np array: \n{}\nwith shape: {}\nindexing first row: {}".format(a, a.shape, a[0, :]))
 
@@ -62,6 +65,7 @@ print("np array: \n{}\nwith shape: {}\nindexing first row: {}".format(a, a.shape
 # this is a not implemented error, you should simply remove it and do some coding here
 raise NotImplementedError()
 
+# variables which are defined as None in the coding section have to be assigned to its correct value or reference
 # create another array b with random numbers (look for the function numpy.random.randn)
 b = None
 
@@ -75,12 +79,12 @@ c = None
 # check if it might be correct
 assert isinstance(c, np.ndarray) and c.shape == (2, 2), "check data type or shape of c"
 
-# now do the same with the torch framework
-import torch
-
 
 # ***
 # your code here
+
+# now do the same array multiplication with the torch framework
+import torch
 
 raise NotImplementedError()
 
@@ -90,7 +94,7 @@ a = None
 # create another array b with random numbers
 b = None
 
-# elementwise multiply a with b and store the result in c
+# element wise multiply a with b and store the result in c
 c = None
 
 # 
@@ -104,7 +108,7 @@ assert torch.is_tensor(c) and c.shape == (2, 2), "check data type or shape of c"
 # often a config file is useful in a project to set parameters for your components. Here we use a .yaml file as format.
 import yaml
 
-# your config as python dictionary
+# your config file loaded as python dictionary
 cfg = yaml.safe_load(open("./config.yaml"))['task0']
 
 # a dictionary is a very widely used data structure in python and contains of
@@ -112,6 +116,12 @@ cfg = yaml.safe_load(open("./config.yaml"))['task0']
 print("keys: ", cfg.keys())
 # and values
 print("values: ", cfg.values())
+
+# it can be created like this
+d = {'a': 1, 'b': 2}
+
+# and accessed like this
+print(d['a'])
 
 
 # ***
@@ -129,8 +139,8 @@ important_variable = None
 #assert not important_variable is None, 'something wrong'
 print("The variable is: ", important_variable)
 
-# dictionaries can also be accessed with the **operator for instance to fuse multiple dictionaries
-print("fusing of dicts", {**{1: 1, 2: 2}, **{3: 3}})
+# dictionaries can also be accessed with the unpacking operator (**) for instance to fuse multiple dictionaries
+print("fusing of dictionaries", {**{1: 1, 2: 2}, **{3: 3}})
 
 
 # ***
@@ -146,9 +156,9 @@ fused_dictionaries = None
 
 
 # this is the python equivalent to a main function which can be seen as the start of your program
-# the only difference to a real main function is that it is only called when the program is run directly and not imported
-# best practice is to define a function def main, but it is only necessary if you intend to import this main function
-# (still note that python scripts run from top to bottom)
+# the only difference to a real main function is that it is only called when the program is run directly and not imported by another python file
+# best practice is to define a function "def main()" but it is only necessary if you intend to import this main function somewhere else
+# (still note that python scripts runs the code from top to bottom, functions are stored but not executed when they are defined)
 
 def main():
   pass
@@ -156,14 +166,14 @@ def main():
 if __name__ == '__main__':
   main()
 
-# all other code should be usually placed in functions or classes
+# all other code should be usually placed in functions or classes (this demo is therefore not the best coding practice)
 def foo(x, *args, **kwargs):
   print("foo function")
   print("args: ", args)
   print("kwargs: ", kwargs)
   return x + 1
 
-# *args are an arbitrary number of arguments and stored in lists
+# *args are an arbitrary number of arguments and stored in lists, e.g. the print function uses args
 args = ['arg1', 2, [4, 2]]
 
 # **kwargs are an arbitrary number of keyword arguments
@@ -172,7 +182,7 @@ kwargs = {'a': 1, 'b': 2}
 # (also a function, but one line)
 bar = lambda x: x + 2
 
-# also note that a variable can also be a function
+# also note that a variable can also be a reference to a function
 function_pointer_foo = foo
 
 # call of functions
@@ -192,10 +202,12 @@ class Animal():
 # an inherited class looks like this
 class Dog(Animal):
   def __init__(self):
-    # the parent aka Animal's init function is called
+    # the parent (Animal) __init__ function is called
     super().__init__()
     # overwrite the member variable
     self.vocal = 'wuff wuff!!"'
+  def get_vocal(self):
+    return self.vocal
 
 # a instance can be created like this
 animal = Animal()
@@ -205,8 +217,10 @@ dog = Dog()
 animal.vocalize()
 dog.vocalize()
 
-# get a member variable
+# get a member variable is also possible... 
 print("the dog says: ", dog.vocal)
+# but its always better to define a getter function
+print("the dog says: ", dog.get_vocal())
 
 
 # ***
@@ -214,13 +228,13 @@ print("the dog says: ", dog.vocal)
 
 raise NotImplementedError()
 
-# create a cat class from Animal
+# create a cat class from Animal and display its vocalization
 
 #
 # ***
 
 
-# a very useful package is pathlib with the Path class
+# a very useful package is pathlib and its Path class
 from pathlib import Path
 
 # create a path
@@ -232,7 +246,7 @@ pyfiles = p.glob('**/*.py')
 # a cool operator for paths
 new_p = p / 'experiments/'
 
-# many more cool path members
+# many more cool path members helping to access the information of a filename
 print(new_p.parent)
 print(new_p.stem)
 
@@ -250,11 +264,11 @@ raise NotImplementedError()
 # ***
 
 
-# another great python functionality are generated lists
+# another distinct functionality in python are generated lists
 gen_list = [i for i in range(10) if i % 2]
 print("gen list: ", gen_list)
 
-# if you like one-liners then this is the best way, also works for dictionaries:
+# if you like one-liners then this is the best way to use them (also works for dictionaries):
 d = {'class{}'.format(i): entry for i, entry in enumerate(gen_list) if entry != 1}
 print("gen dict: ", d)
 
@@ -270,9 +284,8 @@ raise NotImplementedError()
 # ***
 
 
-# next if it comes to datamodule, it is important to understand the iterator objects
-# an iterator is a class that has following member functions
-
+# if it comes to accessing stored data (e.g. in datamodules), it is important to understand the iterator objects
+# an iterator is a class that has following member functions:
 class MyIterator():
   def __iter__(self):
     self.a = np.arange(5)
@@ -309,7 +322,7 @@ raise NotImplementedError()
 # ***
 
 
-# a more advanced technique which gives flexible code is to get function by its string name
+# a more advanced technique which enables more flexible coding, is to get functions by their string name
 # we use the importlib package
 import importlib
 
@@ -318,11 +331,18 @@ module = importlib.import_module('plots')
   
 # get a function or class from the module, this actually is the equivalent of "from plots import plot_2dmatrix as fp_plot"
 fp_plot = getattr(module, 'plot_2dmatrix')
-
 print("plot function: ", fp_plot)
 
 # use this function
 fp_plot([np.arange(4).reshape(2, 2), np.arange(4, 8).reshape(2, 2)])
+
+# if you cannot find the requested module check your python paths with
+import sys
+print(sys.path)
+
+# and append a new path to the list, e.g. a relative path
+sys.path.append('../')
+print(sys.path)
 
 
 # ***
@@ -345,7 +365,7 @@ print(short_class_names)
 # ***
 
 
-# this is now the end of a short introduction to python specific coding
+# this is the end of the short introduction to python specific coding
 # please also checkout other material to learn more on this subject
 # also recommend something if it is missing here
 # Good luck for the assignment - gartenschlaefer 

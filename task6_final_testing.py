@@ -1,7 +1,7 @@
 # --
 # task 6: final testing
 
-# In this task we will load each model from the experiments and test them on the created test dataset.
+# In this task we will load each model from the experiments and test them on the created test datamodule from task 1 and 2.
 # Fill the sections with # *** your code her *** #
 
 import yaml
@@ -72,7 +72,8 @@ def test_models(cfg):
 
     raise NotImplementedError()
 
-    # load the model_file (model load function)
+    # load the model_file (model load function with model_file)
+    # model...
 
     # create a dataloader with a large batch_size 
     dataloader = None

@@ -1,8 +1,8 @@
 # --
 # task 3: model
 
-# In this task you will create a simple cnn model and test it.
-# Note that for the next task we need to define several functions within the cnn model class in order to run the full pipeline.
+# In this task you will create a simple cnn model.
+# Note that for the next task, several functions in the cnn model class are required to run the full pipeline.
 # Fill the sections with # *** your code her *** #
 
 import yaml
@@ -74,7 +74,7 @@ class AnimalCNNModel(torch.torch.nn.Module):
     # 
     # ***
 
-    # get shape of conv layers
+    # get shape of conv layers for the last linear layer
     with torch.no_grad(): flattened_shape = self.layer2(self.layer1(torch.randn((1,) + tuple(self.cfg['input_shape'])))).data.shape
 
     # output layer
@@ -196,7 +196,7 @@ class AnimalCNNModel(torch.torch.nn.Module):
     prediction
     """
 
-    # make sure it is eval mode
+    # make sure model is in eval mode
     self.eval()
 
     # no gradients here
