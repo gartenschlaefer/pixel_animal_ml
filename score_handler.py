@@ -28,7 +28,6 @@ class ScoreHandler():
     self.y_predicted_collect = []
     self.train_loss_collect = []
     self.validation_loss_collect = []
-    self.validation_acc_collect = []
 
     # epoch scores
     self.train_epoch_loss = []
@@ -61,7 +60,6 @@ class ScoreHandler():
     self.y_predicted_collect = []
     self.train_loss_collect = []
     self.validation_loss_collect = []
-    self.validation_acc_collect = []
 
 
   def epoch_finished(self, epoch, print_scores=True, print_function=print):
@@ -71,7 +69,7 @@ class ScoreHandler():
 
     # train loww per epoch
     self.train_epoch_loss.append(np.mean(self.train_loss_collect).item())
-    self.validation_epoch_acc.append(np.mean(self.validation_acc_collect).item())
+    self.validation_epoch_acc.append(self.accuracy)
     self.validation_epoch_loss.append(np.mean(self.validation_loss_collect).item())
     self.y_target_last_epoch = [y.item() for y in self.y_target_collect]
     self.y_predicted_last_epoch = [y.item() for y in self.y_predicted_collect]
@@ -127,13 +125,10 @@ class ScoreHandler():
     self.tn += np.sum(y_predicted[negatives_idx] == y_target[negatives_idx])
 
     # score updates
-    self.accuracy = (self.tp + self.tn) / np.sum([self.tp, self.fp, self.fn, self.tn])
+    self.accuracy = ((self.tp + self.tn) / np.sum([self.tp, self.fp, self.fn, self.tn])).item()
     self.precision = self.tp / np.sum([self.tp + self.fp]) if (self.tp + self.fp) else 0.0
     self.recall = self.tp / np.sum(self.tp + self.fn) if (self.tp + self.fn) else 0.0
     self.f1_score = (2 * self.precision * self.recall / (self.precision + self.recall)) if (self.precision + self.recall) else 0.0
-
-    # save scores
-    self.validation_acc_collect.append(self.accuracy)
 
 
   def logic_class_to_onehot(self):

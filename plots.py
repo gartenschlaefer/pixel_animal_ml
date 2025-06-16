@@ -229,7 +229,7 @@ def plot_scores(score_handler, kfold_id, classes, model_class, save_path=None, s
   ax.plot(score_handler.get_validation_epoch_acc())
   ax.scatter(score_handler.get_best_epoch(), score_handler.get_validation_epoch_acc()[score_handler.get_best_epoch()], marker='*', s=80, color='purple', label='best epoch')
   ax.set_title('Validation accuracy of kfold: {} with model: {}'.format(kfold_id, model_class.__name__))
-  ax.set_ylabel('Mean Accuracy')
+  ax.set_ylabel('Accuracy')
   ax.set_xlabel('Epochs')
   ax.set_ylim([0.0, 1.0])
   ax.legend()
